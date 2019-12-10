@@ -1,0 +1,55 @@
+<div class="columns">
+  <div class="column is-full has-text-centered">
+    <h1 class="title">Hero List</h1>
+  </div>
+</div>
+<div class="columns">
+  <div class="column">
+    <button routerLink="/hero/new" class="button is-primary is-rounded is-fullwidth">
+      <i class="fas fa-user-plus" style="margin-right: 5px;"></i> create</button>
+  </div>
+  <div class="column is-three-quarters">
+    <div *ngIf="loading">
+      <app-loading></app-loading>
+    </div>
+    <div *ngIf="!loading &&  heros.length === 0">
+      <app-nodata></app-nodata>
+    </div>
+    <table *ngIf="!loading && heros.length > 0" class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Name</th>
+          <th>Power</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hero of heros; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{hero.name}}</td>
+          <td>{{hero.power}}</td>
+          <td>
+            <span *ngIf="hero.status" class="icon has-text-success">
+              <i class="fas fa-check-square" style="margin-right: 3px;"></i>
+              <small>Alive</small>
+            </span>
+            <span *ngIf="!hero.status" class="icon has-text-danger">
+              <i class="fas fa-ban" style="margin-right: 3px;"></i>
+              <small>Died</small>
+            </span>
+          </td>
+          <td>
+            <button (click)="deleteHero(hero, i)" class="button is-rounded is-danger is-small mb "
+              style="margin-right: 1rem; width: 100px;"><i class="fas fa-user-slash"
+                style="margin-right: 3px; "></i>Delete</button>
+            <button [routerLink]="['/hero', hero.id]" class="button is-rounded is-info is-small mb"
+              style="width: 100px;"><i class="fas fa-user-edit" style="margin-right: 3px; "></i>Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -1,0 +1,14 @@
+@media (max-width: 685px) {
+  .mb {
+    margin-bottom: 3px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  td,
+  th {
+    font-size: 0.7rem;
+  }
+}

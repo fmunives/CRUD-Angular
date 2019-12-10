@@ -1,0 +1,54 @@
+<div class="columns">
+  <div class="column is-full has-text-centered">
+    <h1 class="title">Hero Details</h1>
+  </div>
+</div>
+<div class="columns">
+  <div class="column">
+    <button routerLink="/heros" class="button is-primary is-rounded is-fullwidth">
+      <i class="fas fa-undo-alt" style="margin-right: 5px;"></i> back</button>
+  </div>
+  <div class="column is-three-quarters">
+    <div *ngIf="loading">
+      <app-loading></app-loading>
+    </div>
+    <form *ngIf="!loading" #form="ngForm" (ngSubmit)="updateForm(form)">
+      <div class="field">
+        <label class="label">Id</label>
+        <div class="control">
+          <input disabled [(ngModel)]="hero.id" name="id" class="input" type="text" placeholder="Id input">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input required [(ngModel)]="hero.name" name="name" class="input" type="text" placeholder="Name input">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Power</label>
+        <div class="control ">
+          <input required [(ngModel)]="hero.power" name="power" class="input is-success" type="text"
+            placeholder="Power input">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Status</label>
+        <div class="control ">
+          <button *ngIf="hero.status" (click)="hero.status = false" class="button  is-rounded is-info is-fullwidth"><i
+              class="far fa-smile" style="margin-right: 5px;"></i>Alive</button>
+          <button *ngIf="!hero.status" (click)="hero.status = true" class="button is-rounded is-danger is-fullwidth"><i
+              class="far fa-frown" style="margin-right: 5px;"></i>Died</button>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control ">
+          <button class="button is-link is-rounded is-fullwidth "><i class="fas fa-save"
+              style="margin-right: 5px;"></i>Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
